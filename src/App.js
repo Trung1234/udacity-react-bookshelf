@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState, useMemo, useDebounce } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import SearchPage from "./pages/SearchPages";
 import HomePage from "./pages/HomePage";
@@ -14,19 +14,16 @@ function App() {
     });
   }, []);
 
-  const categorizedBooks = useMemo(
-    () => ({
-      booksReading: books.filter((book) => book.shelf === "currentlyReading"),
-      booksRead: books.filter((book) => book.shelf === "read"),
-      booksWantToRead: books.filter((book) => book.shelf === "wantToRead"),
-    }),
-    [books]
-  );
+  
+  const updateBookShelf= (book) => {
+		const updatedBooks = [...books.filter(element => element.id !== book.id), book]
+		setBooks(updatedBooks);
+	};
 
   return (
     <Routes>
-      <Route exact path="/" element={<HomePage books={categorizedBooks} />} />
-      <Route path="/search" element={<SearchPage />} />
+      <Route exact path="/" element={<HomePage books={books} updateBookShelf={updateBookShelf}/>} />
+      <Route path="/search" element={<SearchPage booksOnShelf={books} updateBookShelf={updateBookShelf}/>} />
     </Routes>
   );
 }

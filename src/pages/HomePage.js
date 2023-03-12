@@ -1,9 +1,19 @@
 import { Link } from "react-router-dom";
 import "../css/home.css";
 import { ReactComponent as Add } from "../icons/add.svg";
+import {  useMemo } from "react";
 import BookShelf from "../components/BookShelf";
 
-function HomePage({ books }) {
+function HomePage({ books,updateBookShelf }) {
+  const categorizedBooks = useMemo(
+    () => ({
+      booksReading: books.filter((book) => book.shelf === "currentlyReading"),
+      booksRead: books.filter((book) => book.shelf === "read"),
+      booksWantToRead: books.filter((book) => book.shelf === "wantToRead"),
+    }),
+    [books]
+  );
+
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -11,14 +21,14 @@ function HomePage({ books }) {
       </div>
       <div className="list-books-content">
         <div>
-          {books.booksReading.length > 0 && (
-            <BookShelf title="Currently Reading" books={books.booksReading} />
+          {categorizedBooks.booksReading.length > 0 && (
+            <BookShelf title="Currently Reading" updateBookShelf={updateBookShelf}  books={categorizedBooks.booksReading} />
           )}
-          {books.booksWantToRead.length > 0 && (
-            <BookShelf title="Want to read" books={books.booksWantToRead} />
+          {categorizedBooks.booksWantToRead.length > 0 && (
+            <BookShelf title="Want to read" updateBookShelf={updateBookShelf} books={categorizedBooks.booksWantToRead} />
           )}
-          {books.booksRead.length > 0 && (
-            <BookShelf title="Read" books={books.booksRead} />
+          {categorizedBooks.booksRead.length > 0 && (
+            <BookShelf title="Read"  updateBookShelf={updateBookShelf} books={categorizedBooks.booksRead} />
           )}
         </div>
       </div>
