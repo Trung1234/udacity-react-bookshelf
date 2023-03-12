@@ -9,8 +9,10 @@ function App() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    BooksAPI.getAll().then((books) => {
-      if (!books.error) setBooks(books);
+    BooksAPI.getAll().then((data) => {
+      if (!data.error) {
+        setBooks(data);
+      }   
     });
   }, []);
 

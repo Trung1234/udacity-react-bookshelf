@@ -1,7 +1,6 @@
 import Book from "./Book";
 
 const BookShelf = ({books, booksOnShelf, title, updateBookShelf }) => {
-  // const { books, booksOnShelf, title, updateBookShelf } = props;
 
   return (
     <div className="bookshelf">
