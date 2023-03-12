@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import SearchPage from "./pages/SearchPages";
 import HomePage from "./pages/HomePage";
-import * as BooksAPI from "./utilities/BooksAPI";
+import * as bookService from "./services/bookService";
 
 function App() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    BooksAPI.getAll().then((data) => {
+    bookService.getAll().then((data) => {
       if (!data.error) {
         setBooks(data);
       }   

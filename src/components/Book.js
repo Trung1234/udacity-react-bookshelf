@@ -1,4 +1,4 @@
-import * as BooksAPI from "../utilities/BooksAPI";
+import * as bookService from "../services/bookService";
 
 const Book = ({ book, updateBookShelf, booksOnShelf }) => {
   if (booksOnShelf && !book.shelf) {
@@ -10,15 +10,11 @@ const Book = ({ book, updateBookShelf, booksOnShelf }) => {
       book.shelf = bookOnShelf.shelf;
     }
   }
-  const onChangeBookShelf = (e) => {
+  
+  const onChangeBookShelf= (e)=>{
     const shelf = e.target.value;
-    BooksAPI.update(book, shelf).then((data) => {
-      if (!data.error) {
-        book.shelf = shelf;
-        updateBookShelf(book);
-      }
-    });
-  };
+    bookService.onChangeBookShelf(shelf, updateBookShelf, book);
+  }
 
   return (
     <div className="book">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import * as BooksAPI from "../utilities/BooksAPI";
 import "../css/search.css";
+import * as bookService from "../services/bookService";
 import BookShelf from "../components/BookShelf";
 import useDebounce from "../hooks/useDebounce";
 
@@ -11,9 +11,8 @@ const SearchPage = ({ booksOnShelf, updateBookShelf }) => {
 
   useEffect(() => {
     if (searchDebounced) {
-      BooksAPI.search(searchDebounced).then((data) => {
+      bookService.searchBook(searchDebounced).then((data) => {
         if (!data.error) {
-          console.log("books", data);
           setBooks(data);
         } else setBooks("");
       });
