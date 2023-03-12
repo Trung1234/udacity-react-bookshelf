@@ -1,9 +1,9 @@
 import * as BooksAPI from "../api/BooksAPI";
 
 export const onChangeBookShelf = (shelf, updateBookShelf, book) => {
+  book.shelf = shelf;
   BooksAPI.update(book, shelf).then((data) => {
-    if (!data.error) {
-      book.shelf = shelf;
+    if (!data.error) {     
       updateBookShelf(book);
     }
   });

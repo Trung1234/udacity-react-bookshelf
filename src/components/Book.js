@@ -1,15 +1,17 @@
 import * as bookService from "../services/bookService";
 
 const Book = ({ book, updateBookShelf, booksOnShelf }) => {
+  console.log("book",book);
   if (booksOnShelf && !book.shelf) {
     const bookOnShelf = booksOnShelf.find((element) => element.id === book.id);
     //When a book is on a bookshelf,
     //it should have the same state on both the main application page
-    // and the search page.
+    // and the search page. 
     if (bookOnShelf) {
       book.shelf = bookOnShelf.shelf;
-    }
+    } 
   }
+
   
   const onChangeBookShelf= (e)=>{
     const shelf = e.target.value;
@@ -19,10 +21,13 @@ const Book = ({ book, updateBookShelf, booksOnShelf }) => {
   return (
     <div className="book">
       <div className="book-top">
-        <img src={book.imageLinks.thumbnail} alt={book.subtitle} />
+         {(book.imageLinks  &&  book.imageLinks.thumbnail) &&  (
+            <img src={book.imageLinks.thumbnail} alt={book.subtitle} />
+          )}
+        
         <div className="book-shelf-changer">
           <select value={book.shelf || "none"} onChange={onChangeBookShelf}>
-            <option value="none" disabled>
+            <option value="0" disabled>
               Move to...
             </option>
             <option value="currentlyReading">Currently Reading</option>
