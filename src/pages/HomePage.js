@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "../css/home.css";
-import { ReactComponent as Add } from "../icons/add.svg";
 import {  useMemo } from "react";
 import BookShelf from "../components/BookShelf";
 
@@ -34,7 +33,6 @@ function HomePage({ books,updateBookShelf }) {
       </div>
       <div className="open-search">
         <Link to="/search">
-          <Add />
         </Link>
       </div>
     </div>
