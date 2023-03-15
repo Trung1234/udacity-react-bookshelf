@@ -1,7 +1,8 @@
 import * as bookService from "../services/bookService";
 
-const Book = ({ book, updateBookShelf, booksOnShelf }) => {
-  console.log("book",book);
+const Book = (props) => {
+  const { book, updateBookShelf, booksOnShelf }= props;
+  //console.log("book",book);
   if (booksOnShelf && !book.shelf) {
     const bookOnShelf = booksOnShelf.find((element) => element.id === book.id);
     //When a book is on a bookshelf,

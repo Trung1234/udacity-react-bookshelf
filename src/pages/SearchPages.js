@@ -4,7 +4,8 @@ import * as bookService from "../services/bookService";
 import BookShelf from "../components/BookShelf";
 import useDebounce from "../hooks/useDebounce";
 
-const SearchPage = ({ booksOnShelf, updateBookShelf }) => {
+const SearchPage = (props) => {
+  const { booksOnShelf, updateBookShelf } = props;
   const [books, setBooks] = useState([]);
   const [searchResult, setSearchResult] = useState("");
   const searchDebounced = useDebounce(searchResult, 500);

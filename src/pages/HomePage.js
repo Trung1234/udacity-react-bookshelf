@@ -3,7 +3,8 @@ import "../css/home.css";
 import {  useMemo } from "react";
 import BookShelf from "../components/BookShelf";
 
-function HomePage({ books,updateBookShelf }) {
+function HomePage(props) {
+  const { books,updateBookShelf } = props;
   const categorizedBooks = useMemo(
     () => ({
       booksReading: books.filter((book) => book.shelf === "currentlyReading"),
