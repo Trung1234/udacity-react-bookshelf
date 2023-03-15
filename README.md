@@ -11,6 +11,7 @@ https://www.pratik.io/works-myreads.html
 
 ## References
 - https://viblo.asia/p/ban-ve-js-destructuring-Eb85omNBZ2G
+- https://www.w3schools.com/react/react_es6_spread.asp
 - https://blog.logrocket.com/the-beginners-guide-to-mastering-react-props-3f6f01fd7099/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
